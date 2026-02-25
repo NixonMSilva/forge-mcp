@@ -1,0 +1,56 @@
+{
+  "manifest_version": "0.4",
+  "name": "forge-painter",
+  "display_name": "Forge Painter",
+  "version": "1.0.0",
+  "description": "Image generation via SD WebUI Forge (And Neo)",
+  "author": { "name": "NixonMSilva" },
+  "server": {
+    "type": "uv",
+    "entry_point": "server.py",
+    "mcp_config": {
+      "command": "uv",
+      "args": ["run", "${__dirname}/server.py"],
+      "env": {
+        "FORGE_URL":          "${user_config.forge_url}",
+        "FORGE_API_USER":     "${user_config.forge_api_user}",
+        "FORGE_API_PASSWORD": "${user_config.forge_api_password}",
+        "OUTPUT_DIR":         "${user_config.output_dir}"
+      }
+    }
+  },
+  "compatibility": {
+    "platforms": ["win32"],
+    "runtimes": { "python": ">=3.10" }
+  },
+  "tools_generated": true,
+  "user_config": {
+    "forge_url": {
+      "type": "string",
+      "title": "Forge URL",
+      "description": "URL of your SD WebUI Forge Neo instance",
+      "default": "http://127.0.0.1:7860",
+      "required": true
+    },
+    "forge_api_user": {
+      "type": "string",
+      "title": "API Username",
+      "description": "Leave blank if Forge was not launched with --api-auth",
+      "required": false
+    },
+    "forge_api_password": {
+      "type": "string",
+      "title": "API Password",
+      "description": "Leave blank if Forge was not launched with --api-auth",
+      "sensitive": true,
+      "required": false
+    },
+    "output_dir": {
+      "type": "directory",
+      "title": "Output Directory",
+      "description": "Folder where generated images will be saved",
+      "default": "${DOCUMENTS}/forge-painter",
+      "required": true
+    }
+  }
+}

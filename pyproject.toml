@@ -1,0 +1,10 @@
+[project]
+name = "forge-painter"
+version = "1.0.0"
+description = "Image generation via SD WebUI Forge (And Neo)"
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp",
+    "httpx",
+    "python-dotenv",
+]
